@@ -1,0 +1,16 @@
+/* styles.css */
+
+/* Add styles here to customize the appearance of your app */
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    /* overflow-y: scroll; */
+}
+#processing-bar{
+    height: 30px;
+    width: 100%;
+}
+.log-box{
+    height: 100px;
+    max-height: 100px;
+    overflow-y: scroll;
+}

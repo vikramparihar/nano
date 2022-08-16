@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html ng-app="nanoApp">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="css/photon.min.css" rel="stylesheet" />
+    <link
+      href="third-party/jquery-confirm-v3.3.4/dist/jquery-confirm.min.css"
+      rel="stylesheet"
+    />
+    <link href="./styles.css" rel="stylesheet" />
+    <title>Nano</title>
+  </head>
+  <body>
+    <div class="window" ng-controller="appController">
+      <header class="toolbar toolbar-header">
+        <h1 class="title">Nano Image Compressor</h1>
+      </header>
+      <div class="window-content">
+        <div class="pane-group">
+          <div class="pane-sm sidebar">
+            <nav class="nav-group">
+              <h5 class="nav-group-title">About</h5>
+              <a class="nav-group-item active">
+                <span class="icon icon-home"></span>
+                Software
+              </a>
+              <span class="nav-group-item">
+                <span class="icon icon-download"></span>
+                Downloads
+              </span>
+              <span class="nav-group-item">
+                <span class="icon icon-folder"></span>
+                Documents
+              </span>
+              
+            </nav>
+          </div>
+          <div class="pane">
+            <div class="padded-more">
+              <h2 style="margin-top: 10px">Welcome To Nano</h2>
+              <p>
+                <strong>Description:</strong> Nano is image compression tool.
+                Which accept only JPEG image
+                <br />
+                <strong>Note:</strong> Nano is image compression tool. Which
+                accept only JPEG image
+              </p>
+              <div>
+                <form name="nanoForm" ng-submit="submit()">
+                  <fieldset>
+                    <legend>Your Inputs</legend>
+
+                    <div class="form-group">
+                      <label
+                        >Path of the folder or single image path. (example:
+                        D:/image/pic.JPG)</label
+                      >
+                      <input
+                        ng-model="sourcePath"
+                        type="text"
+                        class="form-control"
+                        placeholder="C:/user/data/pictures"
+                        ng-required="required"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Image Quality</label>
+                      <select
+                        class="form-control"
+                        ng-options="option.key for option in qualityList track by option.value"
+                        ng-model="selectedQuality"
+                      ></select>
+                    </div>
+                    <div class="form-actions">
+                      <button
+                        type="button"
+                        ng-click="reset()"
+                        class="btn btn-form btn-default"
+                        ng-disabled="running"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        class="btn btn-form btn-primary"
+                        ng-disabled="running"
+                      >
+                        Start
+                      </button>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+              <div style="margin-top: 15px">
+                <form>
+                  <fieldset>
+                    <legend>Processing Images</legend>
+                    <div>
+                      <progress
+                        id="processing-bar"
+                        value="{{progress}}"
+                        max="100"
+                      >
+                        {{ progress }}%
+                      </progress>
+                    </div>
+                    {{ progress }}%
+                  </fieldset>
+                </form>
+              </div>
+
+              <div style="margin-top: 15px">
+                <form>
+                  <fieldset>
+                    <legend>Logs</legend>
+                    <div class="log-box">
+                      <section ng-repeat="log in logs">{{ log }}</section>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="toolbar toolbar-footer">
+        <h1 class="title">@Nano MIT License</h1>
+      </footer>
+    </div>
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+    <script src="./config.js"></script>
+    <script src="third-party/jquery-3.6.0.min.js"></script>
+    <script src="third-party/jquery-confirm-v3.3.4/dist/jquery-confirm.min.js"></script>
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
