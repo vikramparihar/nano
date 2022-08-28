@@ -10,6 +10,15 @@ Initially its in BETA version.
 - Bulk image compression.
 - 3 image quality option (High, Medium, Low).
 
+# Screenshot
+![enter image description here](https://i.imgur.com/amnlo01.png)
+
+![enter image description here](https://i.imgur.com/RHCbn8W.png)
+
+![enter image description here](https://i.imgur.com/a71WBmb.png)
+
+![enter image description here](https://i.imgur.com/Wc470kx.png)
+
 # Todo
 
 - [ ] Convert user interface in react ui.
