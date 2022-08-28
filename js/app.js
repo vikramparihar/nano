@@ -3,6 +3,7 @@ var nanoApp = angular.module("nanoApp", []);
 
 // Define the `appController` controller on the `nanoApp` module
 nanoApp.controller("appController", function appController($scope) {
+  const boxWidth = "300px";
   $scope.running = false;
   $scope.progress = 0;
   $scope.qualityList = config.QUALITY;
@@ -39,7 +40,7 @@ nanoApp.controller("appController", function appController($scope) {
         let response = await window.electronAPI.convertPhoto(params);
         $.alert({
           useBootstrap: false,
-          boxWidth: "300px",
+          boxWidth: boxWidth,
           title: "Completed!",
           type: "success",
           content: "All Images Compress Successfully",
@@ -54,7 +55,7 @@ nanoApp.controller("appController", function appController($scope) {
       } else {
         $.alert({
           useBootstrap: false,
-          boxWidth: "300px",
+          boxWidth: boxWidth,
           title: "Warning!",
           content: "Please Choose Input Properly",
         });
@@ -66,7 +67,7 @@ nanoApp.controller("appController", function appController($scope) {
       console.log(error);
       $.alert({
         useBootstrap: false,
-        boxWidth: "300px",
+        boxWidth: boxWidth,
         title: "Error!",
         type: "error",
         content: "Sorry ! Unable to process. Try again later",
@@ -92,7 +93,57 @@ nanoApp.controller("appController", function appController($scope) {
         $scope.$apply(function () {
           $scope.logs = response;
         });
+
+        let logbox = document.getElementById("div-log-box");
+        logbox.scrollTop = logbox.scrollHeight;
       }, 300);
     }
   };
+
+  $scope.gotoDownload = async function() {
+    console.log('Go to download page');
+    await window.electronAPI.goToDownloadPage();
+  }
+
+  document
+    .getElementById("link-about-software")
+    .addEventListener("click", function (e) {
+      e.preventDefault();
+      $.alert({
+        useBootstrap: false,
+        boxWidth: "300px",
+        title: "About Software",
+        type: "default",
+        animation: "none",
+        content: config.ALERT_SOFTWARE_CONTENT,
+      });
+    });
+
+  // document
+  //   .getElementById("link-about-download")
+  //   .addEventListener("click", function (e) {
+  //     e.preventDefault();
+  //     $.alert({
+  //       useBootstrap: false,
+  //       boxWidth: "300px",
+  //       title: "About Download",
+  //       type: "default",
+  //       animation: "none",
+  //       content: config.ALERT_DOWNLOAD_CONTENT,
+  //     });
+  //   });
+
+  document
+    .getElementById("link-about-author")
+    .addEventListener("click", function (e) {
+      e.preventDefault();
+      $.alert({
+        useBootstrap: false,
+        boxWidth: "300px",
+        title: "About Author",
+        type: "default",
+        animation: "none",
+        content: config.ALERT_AUTHOR_CONTENT,
+      });
+    });
 });

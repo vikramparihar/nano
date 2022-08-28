@@ -1,8 +1,10 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, Menu } = require("electron");
+const shell = require("electron").shell;
 const path = require("path");
 const MyEmitter = require("./src/EventService");
 const NanoApp = require("./src/Nano");
+const config = require("./src/config");
 
 require("electron-reload")(__dirname, {
   electron: path.join(__dirname, "node_modules", ".bin", "electron"),
@@ -21,8 +23,11 @@ function createWindow() {
   // and load the index.html of the app.
   mainWindow.loadFile("index.html");
   mainWindow.maximize();
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  if (!config.IS_PROD) {
+    mainWindow.removeMenu(true);
+    // Open the DevTools.
+    mainWindow.webContents.openDevTools();
+  }
 }
 
 // This method will be called when Electron has finished
@@ -57,6 +62,9 @@ function initAppApi() {
   ipcMain.handle("convert-photo", async (event, args) => {
     let response = NanoApp.gate(args.path, args.quality);
     return response;
+  });
+  ipcMain.handle("go-to-download", async (event, args) => {
+    shell.openExternal(config.HOME_PAGE);
   });
 }
 

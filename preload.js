@@ -6,4 +6,5 @@ contextBridge.exposeInMainWorld("electronAPI", {
   getProgress: () => ipcRenderer.invoke("get-progress"),
   getLogs: () => ipcRenderer.invoke("get-logs"),
   convertPhoto: (args) => ipcRenderer.invoke("convert-photo", args),
+  goToDownloadPage: () => ipcRenderer.invoke('go-to-download')
 });

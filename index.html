@@ -25,20 +25,21 @@
           <div class="pane-sm sidebar">
             <nav class="nav-group">
               <h5 class="nav-group-title">About</h5>
-              <a class="nav-group-item active">
+              <a class="nav-group-item" id="link-about-software">
                 <span class="icon icon-home"></span>
                 Software
               </a>
-              <span class="nav-group-item">
+              <span class="nav-group-item" ng-click="gotoDownload()">
                 <span class="icon icon-download"></span>
                 Downloads
               </span>
-              <span class="nav-group-item">
-                <span class="icon icon-folder"></span>
-                Documents
+              <span class="nav-group-item" id="link-about-author">
+                <span class="icon icon-user"></span>
+                Author
               </span>
               
             </nav>
+
           </div>
           <div class="pane">
             <div class="padded-more">
@@ -119,7 +120,7 @@
                 <form>
                   <fieldset>
                     <legend>Logs</legend>
-                    <div class="log-box">
+                    <div class="log-box" id="div-log-box">
                       <section ng-repeat="log in logs">{{ log }}</section>
                     </div>
                   </fieldset>

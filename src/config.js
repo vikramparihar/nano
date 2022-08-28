@@ -14,6 +14,9 @@ const config = {
     },
   ],
   TINY_DIR: "tinyBuild",
+  IS_PROD: false,
+  HOME_PAGE: "https://github.com/vikramparihar/nano",
+  IS_PROD: true
 };
 
 module.exports = config;
